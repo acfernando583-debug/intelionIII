@@ -16,7 +16,7 @@ export function GallerySection() {
   const [selectedImage, setSelectedImage] = useState(0);
 
   return (
-    <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden bg-gray-900">
+    <section id="sec-006" ref={ref} className="relative py-24 lg:py-32 overflow-hidden bg-gray-900">
       {/* Background */}
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-black" />

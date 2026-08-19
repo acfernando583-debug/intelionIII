@@ -1,179 +1,176 @@
-import { useState } from "react";
+import { motion } from "framer-motion";
 import { useInViewAnimation } from "../hooks/useInViewAnimation";
-import { GeometricPattern } from "./GeometricPattern";
-
-const STEP_COLORS = [
-  { soft: "rgba(242,101,34,0.25)", border: "rgba(242,101,34,0.6)", glow: "rgba(242,101,34,0.35)", shape: "60% 40% 70% 30% / 50% 60% 40% 50%", accent: "#F26522" },
-  { soft: "rgba(232,112,78,0.25)", border: "rgba(232,112,78,0.6)", glow: "rgba(232,112,78,0.35)", shape: "40% 60% 50% 50% / 60% 40% 60% 40%", accent: "#E8704E" },
-  { soft: "rgba(0,0,0,0.25)", border: "rgba(0,0,0,0.6)", glow: "rgba(0,0,0,0.35)", shape: "50% 50% 60% 40% / 40% 50% 50% 60%", accent: "#000000" },
-  { soft: "rgba(242,101,34,0.25)", border: "rgba(242,101,34,0.6)", glow: "rgba(242,101,34,0.35)", shape: "55% 45% 45% 55% / 55% 45% 55% 45%", accent: "#F26522" },
-];
 
 const STEPS = [
   {
     number: "01",
     title: "Análisis y Diagnóstico",
     description:
-      "Evaluación del consumo energético, análisis técnico del sitio e identificación de oportunidades de ahorro.",
+      "Evaluamos su consumo energético y analizamos las condiciones del sitio para identificar oportunidades de ahorro.",
   },
   {
     number: "02",
     title: "Diseño e Ingeniería",
     description:
-      "Dimensionamiento del sistema, selección de tecnología adecuada, evaluación técnica y económica.",
+      "Dimensionamos el sistema ideal y seleccionamos la tecnología que mejor se adapte a su presupuesto y requerimientos.",
   },
   {
     number: "03",
     title: "Instalación Certificada",
     description:
-      "Montaje profesional, pruebas de aislamiento, configuración de inversores y puesta en marcha.",
+      "Ejecutamos el montaje profesional, pruebas de funcionamiento y puesta en marcha del sistema completo.",
   },
   {
     number: "04",
-    title: "Monitoreo y Soporte",
+    title: "Monitoreo Continuo",
     description:
-      "Seguimiento continuo del rendimiento, mantenimiento preventivo y soporte especializado.",
+      "Seguimos el rendimiento en tiempo real y brindamos soporte continuo para maximizar su inversión.",
   },
 ];
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
+  }),
+};
+
 export function PricingSection() {
   const { ref, inView } = useInViewAnimation();
-  const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <section ref={ref} className="bg-white px-6 py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#F5F5F5]/50 to-transparent pointer-events-none" />
-      <div className="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none">
-        <GeometricPattern type="rect-grid" color="rgba(0,0,0,0.5)" size={100} />
-      </div>
-      <div className="max-w-[88rem] mx-auto relative">
-        <div className="mb-20">
-          <div className={`inline-block mb-4 ${inView ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: "0.1s" }}>
-            <span className="text-[#F26522] text-sm font-semibold tracking-wider uppercase">Proceso</span>
+    <section id="sec-010" ref={ref} className="bg-white px-6 py-24 relative overflow-hidden">
+      {/* Light texture */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+        }}
+      />
+
+      <div className="max-w-[1200px] mx-auto relative">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-20"
+          variants={itemVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          custom={-1}
+        >
+          <div className="inline-flex items-center gap-4 mb-4">
+            <div className="w-12 h-px bg-[#F26522]" />
+            <span className="text-[#F26522] text-xs font-semibold tracking-[0.3em] uppercase font-geometric">
+              Proceso
+            </span>
+            <div className="w-12 h-px bg-[#F26522]" />
           </div>
-          <h2
-            className={`text-4xl md:text-5xl lg:text-6xl font-medium leading-tight text-gray-900 tracking-tight mb-6 ${inView ? "animate-fade-in-up" : "opacity-0"}`}
-            style={{ animationDelay: "0.15s" }}
-          >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight text-gray-900 tracking-tight mb-6 font-art">
             Cómo desarrollamos<br />
-            <span className="text-[#F26522]">su proyecto</span>
+            <span className="text-[#F26522] font-hero italic">su proyecto</span>
           </h2>
-          <p
-            className={`text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl ${inView ? "animate-fade-in-up" : "opacity-0"}`}
-            style={{ animationDelay: "0.25s" }}
-          >
+          <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-geometric">
             Un solo aliado para todo el ciclo de su sistema solar, desde el análisis inicial hasta la operación y mantenimiento continuo.
           </p>
-        </div>
-        <div
-          className="relative"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-        >
-          <svg className="absolute inset-0 w-full h-full pointer-events-none hidden md:block" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M 26 22 C 50 4, 50 4, 74 22" fill="none" stroke="#F26522" strokeWidth="0.6" strokeLinecap="round" className="connector-line" style={{ animationDelay: "0.7s" }} />
-            <path d="M 76 32 C 94 52, 68 58, 24 76" fill="none" stroke="#E8704E" strokeWidth="0.6" strokeLinecap="round" className="connector-line" style={{ animationDelay: "0.9s" }} />
-            <path d="M 26 78 C 50 96, 50 96, 74 78" fill="none" stroke="#000000" strokeWidth="0.6" strokeLinecap="round" className="connector-line" style={{ animationDelay: "1.1s" }} />
-          </svg>
-          <svg className="absolute inset-0 w-full h-full pointer-events-none md:hidden" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M 50 16 C 68 28, 68 36, 50 42" fill="none" stroke="#F26522" strokeWidth="0.6" strokeLinecap="round" className="connector-line" style={{ animationDelay: "0.7s" }} />
-            <path d="M 50 56 C 68 62, 68 66, 50 76" fill="none" stroke="#E8704E" strokeWidth="0.6" strokeLinecap="round" className="connector-line" style={{ animationDelay: "0.9s" }} />
-            <path d="M 50 80 C 68 86, 68 90, 50 96" fill="none" stroke="#000000" strokeWidth="0.6" strokeLinecap="round" className="connector-line" style={{ animationDelay: "1.1s" }} />
-          </svg>
-          {/* Desktop wave dots (2-col grid) */}
-          <div className="absolute inset-0 w-full h-full pointer-events-none hidden md:block" style={{ zIndex: 50 }}>
-            <div className={`wave-dot wave-desktop-1 ${isHovering ? "active" : ""}`} />
-            <div className={`wave-dot wave-desktop-2 ${isHovering ? "active" : ""}`} />
-            <div className={`wave-dot wave-desktop-3 ${isHovering ? "active" : ""}`} />
+        </motion.div>
+
+        {/* Alternating timeline */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Center vertical line */}
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-px">
+            <motion.div
+              className="w-full h-full bg-[#F26522]/20"
+              initial={{ scaleY: 0 }}
+              animate={inView ? { scaleY: 1 } : { scaleY: 0 }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transformOrigin: "top" }}
+            />
           </div>
-          {/* Mobile wave dots (1-col layout) */}
-          <div className="absolute inset-0 w-full h-full pointer-events-none md:hidden" style={{ zIndex: 50 }}>
-            <div className={`wave-dot wave-mobile-1 ${isHovering ? "active" : ""}`} />
-            <div className={`wave-dot wave-mobile-2 ${isHovering ? "active" : ""}`} />
-            <div className={`wave-dot wave-mobile-3 ${isHovering ? "active" : ""}`} />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <div className="space-y-8 md:space-y-16">
             {STEPS.map((step, i) => {
-              const color = STEP_COLORS[i];
+              const isEven = i % 2 === 0;
               return (
-                <div
+                <motion.div
                   key={step.number}
-                  className={`group relative rounded-[32px] p-8 md:p-10 overflow-hidden cursor-pointer ${inView ? "animate-fade-in-up" : "opacity-0"}`}
-                  style={{
-                    animationDelay: `${0.3 + i * 0.12}s`,
-                    backgroundColor: "#f3f4f6",
-                    transition: "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget;
-                    el.style.backgroundColor = color.soft;
-                    el.style.borderRadius = color.shape;
-                    el.style.transform = "translateY(-6px) scale(1.02)";
-                    el.style.boxShadow = `0 25px 50px -12px ${color.glow}, 0 0 0 1px ${color.border}`;
-                    const inner = el.querySelector('.relative.z-10') as HTMLElement;
-                    if (inner) inner.style.padding = "6px";
-                    const header = el.querySelector('.flex.items-center.justify-between') as HTMLElement;
-                    if (header) {
-                      header.style.justifyContent = "center";
-                      header.style.gap = "0";
-                    }
-                    const dot = el.querySelector('.w-10.h-10.rounded-full') as HTMLElement;
-                    if (dot) dot.style.opacity = "0";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget;
-                    el.style.backgroundColor = "#f3f4f6";
-                    el.style.borderRadius = "32px";
-                    el.style.transform = "translateY(0) scale(1)";
-                    el.style.boxShadow = "none";
-                    const inner = el.querySelector('.relative.z-10') as HTMLElement;
-                    if (inner) inner.style.padding = "0";
-                    const header = el.querySelector('.flex.items-center.justify-between') as HTMLElement;
-                    if (header) {
-                      header.style.justifyContent = "space-between";
-                      header.style.gap = "";
-                    }
-                    const dot = el.querySelector('.w-10.h-10.rounded-full') as HTMLElement;
-                    if (dot) dot.style.opacity = "1";
-                  }}
+                  className="relative flex items-center gap-6 md:gap-12"
+                  variants={itemVariants}
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  custom={i}
                 >
-                <div
-                  className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                  style={{ backgroundColor: color.glow }}
-                />
-                  <div
-                    className="relative z-10 flex flex-col items-center text-center transition-all duration-500"
-                    style={{ padding: "0" }}
-                  >
-                    <div className="flex items-center justify-between mb-6 w-full transition-all duration-500">
-                      <span
-                        className="text-6xl md:text-7xl font-medium tracking-tighter transition-all duration-500"
-                        style={{ color: color.accent }}
+                  {/* Left side */}
+                  <div className={`flex-1 ${isEven ? 'md:text-right' : 'md:text-left hidden md:block'}`}>
+                    {isEven && (
+                      <motion.div
+                        className="inline-block p-5 rounded-2xl border border-gray-200/60 bg-white hover:border-[#F26522]/30 hover:shadow-lg hover:shadow-[#F26522]/5 transition-all duration-500 text-left"
+                        whileHover={{ y: -4 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
                       >
-                        {step.number}
-                      </span>
-                      <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500"
-                        style={{ backgroundColor: color.soft }}
-                      >
-                        <div
-                          className="w-2 h-2 rounded-full transition-colors duration-500"
-                          style={{ backgroundColor: color.accent }}
-                        />
-                      </div>
-                    </div>
-                    <h3
-                      className="text-gray-900 text-xl md:text-2xl font-medium mb-4 transition-all duration-500"
-                    >
-                      {step.title}
-                    </h3>
-                    <p
-                      className="text-gray-600 text-base leading-relaxed transition-all duration-500 max-w-[90%]"
-                    >
-                      {step.description}
-                    </p>
+                        <h3 className="text-lg font-semibold text-gray-900 tracking-tight mb-2 font-geometric">
+                          {step.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm leading-relaxed font-geometric">
+                          {step.description}
+                        </p>
+                      </motion.div>
+                    )}
                   </div>
-                </div>
+
+                  {/* Center number */}
+                  <div className="relative z-10 flex-shrink-0">
+                    <motion.div
+                      className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-[#F26522] flex items-center justify-center shadow-sm"
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={inView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                      transition={{
+                        delay: i * 0.2 + 0.3,
+                        duration: 0.5,
+                        ease: [0.16, 1, 0.3, 1]
+                      }}
+                    >
+                      <span className="text-sm font-bold text-[#F26522] font-mono-tech">{step.number}</span>
+                    </motion.div>
+                  </div>
+
+                  {/* Right side */}
+                  <div className={`flex-1 ${!isEven ? 'md:text-left' : 'md:text-right hidden md:block'}`}>
+                    {!isEven && (
+                      <motion.div
+                        className="inline-block p-5 rounded-2xl border border-gray-200/60 bg-white hover:border-[#F26522]/30 hover:shadow-lg hover:shadow-[#F26522]/5 transition-all duration-500 text-left"
+                        whileHover={{ y: -4 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      >
+                        <h3 className="text-lg font-semibold text-gray-900 tracking-tight mb-2 font-geometric">
+                          {step.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm leading-relaxed font-geometric">
+                          {step.description}
+                        </p>
+                      </motion.div>
+                    )}
+                  </div>
+
+                  {/* Mobile content */}
+                  <div className="md:hidden flex-1 pl-2">
+                    <motion.div
+                      className="p-5 rounded-2xl border border-gray-200/60 bg-white hover:border-[#F26522]/30 transition-all duration-500"
+                      whileHover={{ y: -4 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    >
+                      <h3 className="text-lg font-semibold text-gray-900 tracking-tight mb-2 font-geometric">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm leading-relaxed font-geometric">
+                        {step.description}
+                      </p>
+                    </motion.div>
+                  </div>
+                </motion.div>
               );
             })}
           </div>

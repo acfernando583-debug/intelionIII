@@ -12,14 +12,14 @@ export function Navbar() {
           <div className="bg-white rounded-full px-5 py-3 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-900 rounded-full flex items-center justify-center">
-                <span className="text-white text-[10px] sm:text-[11px] font-bold tracking-tight">AX</span>
+                <span className="text-white text-[10px] sm:text-[11px] font-bold tracking-tight font-geometric">AX</span>
               </div>
               <div className="hidden md:flex items-center gap-4 lg:gap-6">
                 {["Nosotros", "Soluciones", "Proceso", "Tecnología", "Contacto"].map((link) => (
                   <a
                     key={link}
                     href={`#${link.toLowerCase()}`}
-                    className="text-[14px] text-gray-900 hover:text-[#F26522] transition-colors duration-300"
+                    className="text-[14px] text-gray-900 hover:text-[#F26522] transition-colors duration-300 font-geometric"
                   >
                     {link}
                   </a>
@@ -27,7 +27,7 @@ export function Navbar() {
               </div>
             </div>
             <div className="hidden md:flex items-center gap-4">
-              <span className="text-[13px] text-gray-600 hidden xl:block">
+              <span className="text-[13px] text-gray-600 hidden xl:block font-geometric">
                 Proyectos disponibles para 2026
               </span>
               <LondonClock />
@@ -61,7 +61,7 @@ export function Navbar() {
         >
           <div className="flex justify-between items-center mb-8">
             <div className="bg-gray-100 rounded-full px-3 py-1.5">
-              <span className="text-[13px] text-gray-600 font-medium">
+              <span className="text-[13px] text-gray-600 font-medium font-geometric">
                 {new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/London", hour: "2-digit", minute: "2-digit" })} en Londres
               </span>
             </div>
@@ -78,14 +78,14 @@ export function Navbar() {
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="text-[28px] leading-[32px] font-medium text-gray-900 hover:text-[#F26522] transition-colors duration-300"
+                className="text-[28px] leading-[32px] font-medium text-gray-900 hover:text-[#F26522] transition-colors duration-300 font-geometric"
                 onClick={() => setMenuOpen(false)}
               >
                 {link}
               </a>
             ))}
           </div>
-          <button className="w-full bg-[#F26522] hover:bg-[#e05a1a] text-white text-[15px] font-medium rounded-full py-4 flex items-center justify-center gap-2 transition-colors duration-300">
+          <button className="w-full bg-[#F26522] hover:bg-[#e05a1a] text-white text-[15px] font-medium rounded-full py-4 flex items-center justify-center gap-2 transition-colors duration-300 font-geometric">
             Iniciar proyecto
             <ArrowRight size={18} />
           </button>

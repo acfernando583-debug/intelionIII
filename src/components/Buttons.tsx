@@ -20,7 +20,7 @@ export function LondonClock() {
   return (
     <div className="hidden lg:flex items-center gap-1.5 text-gray-600">
       <Clock size={14} />
-      <span className="text-[13px]">{time} en Londres</span>
+      <span className="text-[13px] font-geometric">{time} en Londres</span>
     </div>
   );
 }
